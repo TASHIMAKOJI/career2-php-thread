@@ -19,6 +19,15 @@
 
 const THREAD_FILE = 'thread.txt';
 
+function deleteData(){
+    //ファイルを削除する
+    if (unlink(THREAD_FILE)){
+        echo THREAD_FILE.'の削除に成功しました。';
+    }else{
+        echo THREAD_FILE.'の削除に失敗しました。';
+
+    }
+}
 function readData() {
     // ファイルが存在しなければデフォルト空文字のファイルを作成する
     if (! file_exists(THREAD_FILE)) {
@@ -72,6 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 readData();
+
+deleteData();
 
 ?>
 
