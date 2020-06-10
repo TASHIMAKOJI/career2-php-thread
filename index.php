@@ -57,7 +57,7 @@ function writeData() {
 
     fclose($fp);
 
-    // ブラウザのリロード対策です
+    // ブラウザのリロード対策です11:11
     $redirect_url = $_SERVER['HTTP_REFERER'];
     header("Location: $redirect_url");
     exit;
