@@ -10,20 +10,21 @@
  
 <h1 class="text-center">掲示板App</h1>
 <br><br><br><br>
-<h2>投稿フォーム</h2>
+<h2 class="text-center">投稿フォーム</h2>
 
-<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>" class="text-center">
     <input type="text" name="personal_name" placeholder="名前" required><br><br>
     <textarea name="contents" rows="8" cols="40" placeholder="内容" required>
 </textarea><br><br>
     <input type="submit" name="btn" value="投稿する" class="btn btn-primary">
 </form>
 
-<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>" class="text-center">
     <input type="hidden" name="method" value="DELETE">
     <button type="submit" class="btn btn-danger">投稿をすべて削除する</button>
 </form>
-<h2>スレッド</h2>
+<br><br><br><br>
+<h2 class="text-center">スレッド</h2>
 
 <?php
 
