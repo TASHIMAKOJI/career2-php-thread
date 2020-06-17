@@ -13,9 +13,9 @@
     <input type="submit" name="btn" value="投稿する">
 </form>
 
-<form method="DERETEEEE" action="<?php print($_SERVER['PHP_SELF']) ?>">
-</textarea><br><br>
-    <input type="submit" name="btn" value="全ての投稿を削除">
+<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+    <input type="hidden" name="method" value="DELETE">
+    <button type="submit">投稿をすべて削除する</button>
 </form>
 <h2>スレッド</h2>
 
@@ -26,14 +26,7 @@ const THREAD_FILE = 'thread.txt';
 function deleteData()
 {
     //ファイルを削除する
-    if (unlink(THREAD_FILE))
-    {
-        echo THREAD_FILE.'の削除に成功しました。';
-    }
-    else
-    {
-        echo THREAD_FILE.'の削除に失敗しました。';
-    }
+    file_put_contents(THREAD_FILE, "");
 }
 function readData() 
 {
@@ -93,13 +86,15 @@ function writeData()
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") 
 {
-    writeData();
+    if(isset($_POST["method"]) && $_POST["method"] === "DELETE")
+    {
+        deleteData();
+
+    }
+    else
+        writeData();
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "DERETEEEE") 
-{
-    deleteData();
-}
 
 
 readData();
