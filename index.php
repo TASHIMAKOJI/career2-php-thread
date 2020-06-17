@@ -13,24 +13,33 @@
     <input type="submit" name="btn" value="投稿する">
 </form>
 
+<form method="DERETEEEE" action="<?php print($_SERVER['PHP_SELF']) ?>">
+</textarea><br><br>
+    <input type="submit" name="btn" value="全ての投稿を削除">
+</form>
 <h2>スレッド</h2>
 
 <?php
 
 const THREAD_FILE = 'thread.txt';
 
-function deleteData(){
+function deleteData()
+{
     //ファイルを削除する
-    if (unlink(THREAD_FILE)){
+    if (unlink(THREAD_FILE))
+    {
         echo THREAD_FILE.'の削除に成功しました。';
-    }else{
+    }
+    else
+    {
         echo THREAD_FILE.'の削除に失敗しました。';
-
     }
 }
-function readData() {
+function readData() 
+{
     // ファイルが存在しなければデフォルト空文字のファイルを作成する
-    if (! file_exists(THREAD_FILE)) {
+    if (! file_exists(THREAD_FILE)) 
+    {
         $fp = fopen(THREAD_FILE, 'w');
         fwrite($fp, '');
         fclose($fp);
@@ -40,7 +49,8 @@ function readData() {
     echo $thread_text;
 }
 
-function writeData() {
+function writeData() 
+{
     //date_default_timezone_set('Asia/Tokyo');
     //date("Y/m/d H:i:s") . "\n";
     $personal_name = $_POST['personal_name'];
@@ -56,33 +66,46 @@ function writeData() {
 
     $fp = fopen(THREAD_FILE, 'a');
 
-    if ($fp){
-        if (flock($fp, LOCK_EX)){
-            if (fwrite($fp,  $data) === FALSE){
+    if ($fp)
+    {
+        if (flock($fp, LOCK_EX))
+        {
+            if (fwrite($fp,  $data) === FALSE)
+            {
                 print('ファイル書き込みに失敗しました');
             }
 
             flock($fp, LOCK_UN);
-        }else{
+        }
+        else
+        {
             print('ファイルロックに失敗しました');
         }
     }
 
     fclose($fp);
 
-    // ブラウザのリロード対策です11:11
+    // ブラウザのリロード対策
     $redirect_url = $_SERVER['HTTP_REFERER'];
     header("Location: $redirect_url");
     exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") 
+{
     writeData();
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "DERETEEEE") 
+{
+    deleteData();
+}
+
+
 readData();
 
-deleteData();
+
+
 
 ?>
 
