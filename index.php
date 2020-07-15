@@ -69,10 +69,14 @@ const THREAD_FILE = 'thread.txt';
 require_once './Thread.php';
 $thread = new Thread('掲示板App');
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["method"]) && $_POST["method"] === "DELETE") {
+if ($_SERVER["REQUEST_METHOD"] === "POST")
+{
+    if (isset($_POST["method"]) && $_POST["method"] === "DELETE") 
+    {
         $thread->delete();
-    } else {
+    } 
+    else 
+    {
         $thread->post($_POST['personal_name'], $_POST['contents']);
     }
 
